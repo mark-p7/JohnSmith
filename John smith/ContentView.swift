@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             Text("Hello, world!")
-            Text("Hello 2")
+            Text("Hello round 2")
         }
     }
 }
