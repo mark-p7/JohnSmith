@@ -1,0 +1,6 @@
+framework module Pods_John_smith {
+  umbrella header "Pods-John smith-umbrella.h"
+
+  export *
+  module * { export * }
+}
