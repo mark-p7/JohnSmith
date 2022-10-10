@@ -1,16 +1,16 @@
 //
-//  ContentView.swift
+//  HomeView.swift
 //  John smith
 //
-//  Created by Mark De Guzman on 2022-09-23.
+//  Created by Mark De Guzman on 2022-10-10.
 //
 
 import SwiftUI
 import Firebase
 
-struct ContentView: View {
+struct HomeView: View {
     
-    @ObservedObject var model = ViewModel()
+    @ObservedObject var model = HomeViewModel()
     
     var body: some View {
         VStack{
@@ -29,11 +29,10 @@ struct ContentView: View {
         model.getUsersData()
         model.getGroupsData()
     }
-    
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }

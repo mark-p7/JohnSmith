@@ -26,7 +26,7 @@ struct John_smithApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RegisterView()
         }
     }
 }

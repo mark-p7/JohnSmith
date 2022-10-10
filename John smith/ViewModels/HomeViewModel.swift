@@ -1,17 +1,16 @@
 //
-//  ViewModel.swift
+//  HomeViewModel.swift
 //  John smith
 //
-//  Created by Mark De Guzman on 2022-10-07.
+//  Created by Mark De Guzman on 2022-10-10.
 //
 
 import Foundation
 import Firebase
 
-class ViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     @Published var userList = [User]()
     @Published var groupList = [Group]()
-    
     
     func getGroupsData() {
         
@@ -80,3 +79,4 @@ class ViewModel: ObservableObject {
         }
     }
 }
+
