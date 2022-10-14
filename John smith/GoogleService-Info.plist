@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>597221009736-snce4b15nlpsu3tcu68ra4edk29km4o5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.597221009736-snce4b15nlpsu3tcu68ra4edk29km4o5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBKOoUCaNGJe8_GN3epD-Sf-I1jU_PnrvU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>597221009736</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>-977Programmers.John-smith</string>
+	<key>PROJECT_ID</key>
+	<string>anonymouslove-200a4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>anonymouslove-200a4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:597221009736:ios:dd01189d6e71b504236b7d</string>
+	<key>DATABASE_URL</key>
+	<string>https://anonymouslove-200a4-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
