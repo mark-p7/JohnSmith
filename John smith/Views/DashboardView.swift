@@ -1,16 +1,16 @@
 //
-//  HomeView.swift
+//  DashboardView.swift
 //  John smith
 //
-//  Created by Mark De Guzman on 2022-10-10.
+//  Created by Mark De Guzman on 2022-10-14.
 //
 
 import SwiftUI
-import Firebase
 
-struct HomeView: View {
+struct DashboardView: View {
     
-    @ObservedObject var model = HomeViewModel()
+    @ObservedObject var model = DashboardViewModel()
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         VStack{
@@ -22,6 +22,11 @@ struct HomeView: View {
             List(model.userList) { user in
                 Text(user.name).font(.title3).bold()
             }
+            Button {
+                authViewModel.signOut()
+            } label: {
+                Text("SignOut")
+            }
         }
     }
     
@@ -31,8 +36,8 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        DashboardView()
     }
 }

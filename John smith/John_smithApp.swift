@@ -24,9 +24,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct John_smithApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var viewModel = AuthViewModel()
     var body: some Scene {
         WindowGroup {
-            RegisterView()
+            NavigationView {
+                HomeView()
+            }.environmentObject(viewModel)
         }
     }
 }
