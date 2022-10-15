@@ -13,6 +13,23 @@ struct DashboardView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
+        dashboardInterfaceView
+    }
+    
+    init() {
+        model.getUsersData()
+        model.getGroupsData()
+    }
+}
+
+struct DashboardView_Previews: PreviewProvider {
+    static var previews: some View {
+        DashboardView()
+    }
+}
+
+extension DashboardView {
+    var dashboardInterfaceView: some View {
         VStack{
             Text("Groups").font(.title).bold()
             List(model.groupList) { group in
@@ -28,16 +45,5 @@ struct DashboardView: View {
                 Text("SignOut")
             }
         }
-    }
-    
-    init() {
-        model.getUsersData()
-        model.getGroupsData()
-    }
-}
-
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardView()
     }
 }

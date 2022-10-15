@@ -21,7 +21,6 @@ struct HomeView: View {
             DashboardView()
         }
     }
-
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -37,6 +36,9 @@ extension HomeView {
             Text("LandingPage").font(.title).bold()
             NavigationLink(destination: RegisterView()){
                 Text("Register")
+            }
+            NavigationLink(destination: LoginView()){
+                Text("Login")
             }
         }
     }

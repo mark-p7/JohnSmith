@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 class AuthViewModel: ObservableObject {
     
@@ -74,8 +75,12 @@ class AuthViewModel: ObservableObject {
             // Create User document
             Firestore.firestore().collection("Users")
                 .document(user.uid)
-                .setData(data) { _ in
-                    print("DEBUG: Did upload user data...")
+                .setData(data) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
                 }
         }
     }

@@ -10,26 +10,23 @@ import SwiftUI
 struct RegisterView: View {
     
     // UserObject
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     // Connect to RegisterViewModel
     // @ObservedObject var model = RegisterViewModel()
 
-    // State variables for email and password
+    // State variables for user data
     @State private var email = ""
     @State private var password = ""
+    @State private var fullName = ""
+    @State private var gender = ""
     
     // State variables for error messages
     @State private var alert = false
     @State private var alertMessage = ""
 
     var body: some View {
-            if viewModel.userSession == nil {
-                
-                registerInterfaceView
-            } else {
-                DashboardView()
-            }
+        registerInterfaceView
     }
     
     // Checks if Email is Valid
@@ -57,6 +54,14 @@ extension RegisterView {
                     trailing: 10))
             VStack{
                 // Email and Password Textfields
+                TextField("Name", text: $fullName)
+                    .foregroundColor(.black)
+                    .font(.title2)
+                    .multilineTextAlignment(.center)
+                TextField("Gender", text: $gender)
+                    .foregroundColor(.black)
+                    .font(.title2)
+                    .multilineTextAlignment(.center)
                 TextField("Email", text: $email)
                     .foregroundColor(.black)
                     .font(.title2)
@@ -75,7 +80,22 @@ extension RegisterView {
                     self.alert = true
                     return;
                 }
-//                model.register(paramEmail: self.email, paramPassword: self.password)
+                if (self.password == "") {
+                    self.alertMessage = "Password is not valid"
+                    self.alert = true
+                    return;
+                }
+                if (self.fullName == "") {
+                    self.alertMessage = "Name is not valid"
+                    self.alert = true
+                    return;
+                }
+                if (self.gender == "") {
+                    self.alertMessage = "Gender is not valid"
+                    self.alert = true
+                    return;
+                }
+                authViewModel.register(withEmail: self.email, password: self.password, fullName: self.fullName, gender: self.gender)
             })
             Spacer()
         }.alert(self.alertMessage, isPresented: $alert) {
