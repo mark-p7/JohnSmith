@@ -19,6 +19,7 @@
 		4A4378BC28F4C8DF00161FD3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4378BB28F4C8DF00161FD3 /* LoginViewModel.swift */; };
 		4A4378BE28F4C90500161FD3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4378BD28F4C90500161FD3 /* HomeView.swift */; };
 		4A4378C028F4C98700161FD3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4378BF28F4C98700161FD3 /* HomeViewModel.swift */; };
+		4A476C1B2908961E00F76735 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A476C1A2908961E00F76735 /* UIColor.swift */; };
 		4A775FB428F1312800615D08 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4A775FB328F1312800615D08 /* FirebaseAuth */; };
 		4A775FB628F1312800615D08 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4A775FB528F1312800615D08 /* FirebaseAuthCombine-Community */; };
 		4A775FB828F1312800615D08 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4A775FB728F1312800615D08 /* FirebaseDatabase */; };
@@ -46,6 +47,7 @@
 		4A4378BB28F4C8DF00161FD3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4A4378BD28F4C90500161FD3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A4378BF28F4C98700161FD3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4A476C1A2908961E00F76735 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = ../../../../../../../.Trash/UIColor.swift; sourceTree = "<group>"; };
 		4A775FC628F1375000615D08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A775FC828F1376300615D08 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +159,7 @@
 		4A9F6FD828FA894300B5BE25 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4A476C1A2908961E00F76735 /* UIColor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A4378C028F4C98700161FD3 /* HomeViewModel.swift in Sources */,
+				4A476C1B2908961E00F76735 /* UIColor.swift in Sources */,
 				4A4378B528F4C83D00161FD3 /* RegisterView.swift in Sources */,
 				4A4378BE28F4C90500161FD3 /* HomeView.swift in Sources */,
 				4A4378BA28F4C8D200161FD3 /* AuthViewModel.swift in Sources */,
