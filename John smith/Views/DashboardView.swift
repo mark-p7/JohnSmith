@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DashboardView: View {
     
     @ObservedObject var model = DashboardViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
+    
+    let uid = Auth.auth().currentUser?.uid
     
     var body: some View {
         dashboardInterfaceView
@@ -31,19 +34,29 @@ struct DashboardView_Previews: PreviewProvider {
 extension DashboardView {
     var dashboardInterfaceView: some View {
         VStack{
+            // Text(uid!)
             Text("Groups").font(.title).bold()
             List(model.groupList) { group in
-                Text(group.id).font(.title3).bold()
-            }
+                NavigationLink("\(group.id)",destination: GroupView (groupName: group.id, currentUser: uid!))
+        //                Text(group.id).font(.title3).bold()
+            }.font(.title3)
             Text("Users").font(.title).bold()
             List(model.userList) { user in
-                Text(user.name).font(.title3).bold()
+                NavigationLink("\(user.name)", destination: UserView (userName: user.name, desctiption: user.desctiption, gender: user.gender))
+        //                Text(user.name).font(.title3).bold()
             }
-            Button {
-                authViewModel.signOut()
-            } label: {
-                Text("SignOut")
+            // my change
+            HStack{
+                
+                Button {
+                    authViewModel.signOut()
+                } label: {
+                    Text("SignOut")
+                }
+                NavigationLink("Create Group", destination: CreateGroupView())
+                
             }
         }
     }
+    
 }
