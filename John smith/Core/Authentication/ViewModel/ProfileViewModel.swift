@@ -10,12 +10,13 @@ import Firebase
 import FirebaseFirestore
 
 class ProfileViewModel: ObservableObject {
-    
+    //Variables as is for dumping from firestore
     @Published var userEmail = ""
     @Published var userName = ""
     @Published var userGender = ""
     @Published var userAbout = ""
-
+    
+    //pulls user id from signed in user to query documents, does not check if user is logged in because user must be logged in
     func getUserID() -> String {
         let userID : String = (Auth.auth().currentUser?.uid)!
         print("Current user ID is" + userID)
@@ -23,7 +24,7 @@ class ProfileViewModel: ObservableObject {
         return userID
     }
     
-    
+    //Pulls firestore db document as dictionary and dumps data into local variables
     func getUserData() -> Void {
         let db = Firestore.firestore()
         let docRef = db.collection("Users").document(getUserID())
@@ -42,7 +43,7 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
-    
+    //Getters for each variable for clarity
     func getEmail() -> String {
         //getUserData()
         return userEmail
@@ -63,11 +64,31 @@ class ProfileViewModel: ObservableObject {
         return userAbout
     }
     
-    func testWrite(change: String) {
-        print(change)
+    //Edits the about category under user
+    func editAbout(changeAbout: String, changeGender: String, changeName: String) {
+        print(changeAbout)
+        var about = changeAbout
+        var gender = changeGender
+        var name = changeName
+        
+        //Checks if input fields are empty
+        if(changeAbout.isEmpty) {
+          about = getAbout()
+        }
+        
+        if(changeGender.isEmpty) {
+            gender = getGender()
+        }
+        
+        if(changeName.isEmpty) {
+            name = getName()
+        }
+        
         let db = Firestore.firestore()
         db.collection("Users").document(getUserID()).updateData([
-            "about" : change
+            "about" : about,
+            "gender" : gender,
+            "name" : name
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")

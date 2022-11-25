@@ -15,6 +15,7 @@ struct DashboardView: View {
     
     var body: some View {
         dashboardInterfaceView
+            .padding(/*@START_MENU_TOKEN@*/.top, -50.0/*@END_MENU_TOKEN@*/)
     }
     
     init() {
@@ -35,8 +36,15 @@ extension DashboardView {
         NavigationView {
             VStack{
                 VStack {
-                    Text("Welcome \(profileViewModel.getName())")
-                    NavigationLink(destination: ProfileView().navigationTitle("Profile")) {
+                    Text("\(profileViewModel.getName())")
+                        .font(.title)
+                    Text("\(profileViewModel.getGender())")
+                        .font(.title2)
+                    Text("\(profileViewModel.getAbout())")
+                        .font(.title2)
+                    NavigationLink(destination: ProfileView().navigationTitle("Profile")
+                        .navigationBarTitleDisplayMode(.inline)
+                    ) {
                         Text("Edit Profile")
                     }
                     
@@ -56,6 +64,7 @@ extension DashboardView {
                     Text("SignOut")
                 }
             }
-        }
+        }.navigationBarTitle("")
+            .navigationBarHidden(true)
     }
 }

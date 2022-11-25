@@ -12,10 +12,14 @@ import FirebaseFirestore
 
 
 struct ProfileView: View {
+    //View model for profile
     @ObservedObject var profileViewModel = ProfileViewModel()
+    //boolean for edit profile alert
     @State private var showingAlert: Bool = false
-    
-    @State private var testmsg: String = ""
+    //Variables that are changed using edit
+    @State private var editAbout: String = ""
+    @State private var editGender: String = ""
+    @State private var editName: String = ""
     
     var body: some View {
         profileInterfaceView
@@ -36,24 +40,42 @@ struct ProfileView_Previews: PreviewProvider {
 extension ProfileView {
     
     var profileInterfaceView: some View {
-        VStack {
-            //Text("UID: \(profileViewModel.getUserID())")
+        VStack(alignment: .leading) {
             Text("Email: \(profileViewModel.getEmail())")
+            
             Text("Name: \(profileViewModel.getName())")
+            TextField("Your Name: ", text: $editName)
+            
             Text("Gender: \(profileViewModel.getGender())")
+            TextField("Your Gender: ", text: $editGender)
+            
             Text("About: \(profileViewModel.getAbout())")
-            TextField("Enter test: ", text: $testmsg)
+            TextField("Tell us about yourself: ", text: $editAbout)
+            
             Button("Edit") {
                 showingAlert = true
-            }.alert("Confirm changes?", isPresented: $showingAlert, actions: {
+            }.alert("Are you sure?", isPresented: $showingAlert, actions: {
                 Button("Ok", role: .destructive, action: {
-                    profileViewModel.testWrite(change: testmsg)
+                    profileViewModel.editAbout(
+                        changeAbout: editAbout,
+                        changeGender: editGender,
+                        changeName: editName
+                    )
+                    //Clear text fields afterwards
+                    editName = ""
+                    editGender = ""
+                    editAbout = ""
+                    //Reload data on profile page
                     profileViewModel.getUserData()
                 })
              }, message: {
-                Text("Yes")
+                Text("")
              })
+            Spacer()
         }
+        .padding(.horizontal, 20.0)
+        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+        
     }
 }
 
