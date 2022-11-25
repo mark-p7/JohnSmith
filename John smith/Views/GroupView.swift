@@ -25,13 +25,22 @@ struct GroupView: View {
 
     @State private var studentDictionary: [String: String] = [:]
     @State private var userDescription: String = ""
+    @State private var hasJoined: Bool = false
 
     
     var body: some View {
         VStack {
             Text(groupName)
             Text(userDescription)
-            Button("Join", action: joinGroup)
+            if (hasJoined == false) {
+                Button("Join", action: joinGroup)
+
+            } else {
+                Button("Leave group", action: leaveGroup)
+
+            }
+            
+//            Button("Join", action: joinGroup)
             if (b == false) {
                 Button("See the joined users", action: {
                     if b == false {
@@ -71,6 +80,13 @@ struct GroupView: View {
             
         }
         
+    }
+    
+    func leaveGroup() {
+        let db = Firestore.firestore()
+        db.collection("Groups").document(groupName).updateData(["users" : FieldValue.arrayRemove([currentUser])
+        ])
+        hasJoined = false
     }
     
     func testMulti() {
@@ -133,6 +149,7 @@ struct GroupView: View {
                     print("current user is")
                     if joinedUsers.contains(currentUser) {
                         joinedUsers = joinedUsers.filter { $0 != currentUser}
+                        hasJoined = true
                     }
                     for each in joinedUsers {
                         print("user: \(each)")
@@ -153,6 +170,7 @@ struct GroupView: View {
         let db = Firestore.firestore()
         db.collection("Groups").document(groupName).updateData(["users" : FieldValue.arrayUnion([currentUser])
         ])
+        hasJoined = true
     }
     
 }

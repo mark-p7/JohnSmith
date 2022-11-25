@@ -13,7 +13,6 @@ struct CreateGroupView: View {
     @State private var groupName = ""
     @State private var description = ""
     let uid = Auth.auth().currentUser?.uid
-
     
     var body: some View {
         VStack {

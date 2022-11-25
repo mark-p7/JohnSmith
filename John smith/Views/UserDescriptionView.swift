@@ -38,11 +38,14 @@ struct UserDescriptionView: View {
         let db = Firestore.firestore()
         db.collection("Users").document(userId).updateData(["pulledLikes" : FieldValue.arrayUnion([uid!])
         ])
-        print("your uid is \(uid)")
+        print("your uid is \(uid!)")
         like = true
     }
     
     func unlikeUser() {
+        let db = Firestore.firestore()
+        db.collection("Users").document(userId).updateData(["pulledLikes" : FieldValue.arrayRemove([uid!])
+        ])
         like = false
     }
     
