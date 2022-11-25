@@ -10,6 +10,7 @@ import SwiftUI
 struct DashboardView: View {
     
     @ObservedObject var model = DashboardViewModel()
+    @ObservedObject var profileViewModel = ProfileViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
@@ -19,6 +20,7 @@ struct DashboardView: View {
     init() {
         model.getUsersData()
         model.getGroupsData()
+        profileViewModel.getUserData()
     }
 }
 
@@ -30,19 +32,29 @@ struct DashboardView_Previews: PreviewProvider {
 
 extension DashboardView {
     var dashboardInterfaceView: some View {
-        VStack{
-            Text("Groups").font(.title).bold()
-            List(model.groupList) { group in
-                Text(group.id).font(.title3).bold()
-            }
-            Text("Users").font(.title).bold()
-            List(model.userList) { user in
-                Text(user.name).font(.title3).bold()
-            }
-            Button {
-                authViewModel.signOut()
-            } label: {
-                Text("SignOut")
+        NavigationView {
+            VStack{
+                VStack {
+                    Text("Welcome \(profileViewModel.getName())")
+                    NavigationLink(destination: ProfileView().navigationTitle("Profile")) {
+                        Text("Edit Profile")
+                    }
+                    
+                }.font(.title)
+                
+                Text("Groups").font(.title).bold()
+                List(model.groupList) { group in
+                    Text(group.id).font(.title3).bold()
+                }
+                Text("Users").font(.title).bold()
+                List(model.userList) { user in
+                    Text(user.name).font(.title3).bold()
+                }
+                Button {
+                    authViewModel.signOut()
+                } label: {
+                    Text("SignOut")
+                }
             }
         }
     }
