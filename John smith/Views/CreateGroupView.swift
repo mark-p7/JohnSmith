@@ -12,17 +12,27 @@ struct CreateGroupView: View {
     
     @State private var groupName = ""
     @State private var description = ""
+    let uid = Auth.auth().currentUser?.uid
+
     
     var body: some View {
         VStack {
             TextField("Group Name", text: $groupName)
             TextField("Description", text: $description)
-            Button("Create", action: addGroup)
+            Button("Create", action: {
+                addGroup()
+                joinGroup()
+            })
         }.multilineTextAlignment(.center)
     }
     func addGroup() {
         let db = Firestore.firestore()
         db.collection("Groups").document(groupName).setData(["Description": description])
+    }
+    func joinGroup() {
+        let db = Firestore.firestore()
+        db.collection("Groups").document(groupName).updateData(["users" : FieldValue.arrayUnion([uid!])
+        ])
     }
 }
 
