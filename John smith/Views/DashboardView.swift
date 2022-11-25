@@ -22,6 +22,7 @@ struct DashboardView: View {
         model.getUsersData()
         model.getGroupsData()
         profileViewModel.getUserData()
+        model.getMatchedUsersList()
     }
 }
 
@@ -64,7 +65,30 @@ extension DashboardView {
                     Text("SignOut")
                 }
             }
+<<<<<<< HEAD
         }.navigationBarTitle("")
             .navigationBarHidden(true)
+=======
+            Text("Matched Users").font(.title).bold()
+            List(model.matchedUsersList) { user in
+                Text(user.name).font(.title3).bold()
+            }
+            HStack {
+                Button {
+                    authViewModel.signOut()
+                } label: {
+                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                        .imageScale(.large)
+                }.padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
+                Spacer()
+                Button {
+                    
+                } label: {
+                    Image(systemName: "person.crop.circle")
+                        .imageScale(.large)
+                }.padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 30))
+            }
+        }
+>>>>>>> MatchedUsersView
     }
 }

@@ -24,7 +24,7 @@ struct RegisterView: View {
     // State variables for error messages
     @State private var alert = false
     @State private var alertMessage = ""
-
+    
     var body: some View {
         registerInterfaceView
     }
@@ -42,37 +42,53 @@ extension RegisterView {
     
     var registerInterfaceView: some View {
         VStack{
-            Text("Email: \(self.email)")
-            Text("Password: \(self.password)")
+            // Title
             Text("JOIN NOW")
-                .font(.title)
+                .font(.system(size: 40))
                 .bold()
+                .foregroundColor(Color("Primary"))
                 .padding(EdgeInsets(
                     top: 50,
                     leading: 10,
                     bottom: 10,
                     trailing: 10))
+            
             VStack{
                 // Email and Password Textfields
-                TextField("Name", text: $fullName)
-                    .foregroundColor(.black)
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
+                HStack{
+                    Spacer()
+                    VStack {
+                        TextField("Name", text: $fullName)
+                            .foregroundColor(.black)
+                            .font(.title2)
+                            .multilineTextAlignment(.center)
+                            .frame(width: 200)
+                        Divider()
+                    }
+                    Spacer()
+                }
+                .frame(width: 210)
+
                 TextField("Gender", text: $gender)
                     .foregroundColor(.black)
                     .font(.title2)
                     .multilineTextAlignment(.center)
+                    .padding()
                 TextField("Email", text: $email)
                     .foregroundColor(.black)
                     .font(.title2)
                     .multilineTextAlignment(.center)
+                    .textInputAutocapitalization(.never)
+                    .padding()
                 SecureField("Password", text: $password)
                     .foregroundColor(.black)
                     .font(.title2)
                     .multilineTextAlignment(.center)
+                    .textInputAutocapitalization(.never)
+                    .padding()
             }
             // Register Button
-            Button("Register", action: {
+            Button {
                 // Checks if email is valid
                 if (!isValidEmail(self.email)) {
                     // Displays alert if email is not valid
@@ -96,7 +112,15 @@ extension RegisterView {
                     return;
                 }
                 authViewModel.register(withEmail: self.email, password: self.password, fullName: self.fullName, gender: self.gender)
-            })
+            }
+            label: {
+                Text("Login")
+                    .frame(width: 150,height: 30)
+                    .foregroundColor(Color("Tenary"))
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color("Secondary"))
+            .buttonBorderShape(.capsule)
             Spacer()
         }.alert(self.alertMessage, isPresented: $alert) {
             Button("OK", role: .cancel) {
