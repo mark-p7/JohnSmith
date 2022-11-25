@@ -15,7 +15,6 @@ struct DashboardView: View {
     
     var body: some View {
         dashboardInterfaceView
-            .padding(/*@START_MENU_TOKEN@*/.top, -50.0/*@END_MENU_TOKEN@*/)
     }
     
     init() {
@@ -34,46 +33,8 @@ struct DashboardView_Previews: PreviewProvider {
 
 extension DashboardView {
     var dashboardInterfaceView: some View {
-        NavigationView {
-            VStack{
-                VStack {
-                    Text("\(profileViewModel.getName())")
-                        .font(.title)
-                    Text("\(profileViewModel.getGender())")
-                        .font(.title2)
-                    Text("\(profileViewModel.getAbout())")
-                        .font(.title2)
-                    NavigationLink(destination: ProfileView().navigationTitle("Profile")
-                        .navigationBarTitleDisplayMode(.inline)
-                    ) {
-                        Text("Edit Profile")
-                    }
-                    
-                }.font(.title)
-                
-                Text("Groups").font(.title).bold()
-                List(model.groupList) { group in
-                    Text(group.id).font(.title3).bold()
-                }
-                Text("Users").font(.title).bold()
-                List(model.userList) { user in
-                    Text(user.name).font(.title3).bold()
-                }
-                Button {
-                    authViewModel.signOut()
-                } label: {
-                    Text("SignOut")
-                }
-            }
-<<<<<<< HEAD
-        }.navigationBarTitle("")
-            .navigationBarHidden(true)
-=======
-            Text("Matched Users").font(.title).bold()
-            List(model.matchedUsersList) { user in
-                Text(user.name).font(.title3).bold()
-            }
-            HStack {
+        VStack{
+            HStack{
                 Button {
                     authViewModel.signOut()
                 } label: {
@@ -81,14 +42,29 @@ extension DashboardView {
                         .imageScale(.large)
                 }.padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
                 Spacer()
-                Button {
-                    
-                } label: {
-                    Image(systemName: "person.crop.circle")
-                        .imageScale(.large)
-                }.padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 30))
+                HStack {
+                    Text("Hi, \(profileViewModel.getName())!")
+                        .font(.title2)
+                        .bold()
+                        .padding()
+                    NavigationLink(destination: ProfileView()
+                        .navigationBarTitleDisplayMode(.inline)
+                    ) {
+                        Image(systemName: "person.crop.circle")
+                            .imageScale(.large)
+                    }.padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 30))
+                }
+            }
+            Text("Groups").font(.title).bold()
+            List(model.groupList) { group in
+                Text(group.id).font(.title3).bold()
+            }
+            Text("Matched Users").font(.title).bold()
+            List(model.matchedUsersList) { user in
+                Text(user.name).font(.title3).bold()
             }
         }
->>>>>>> MatchedUsersView
+        
     }
 }
+
