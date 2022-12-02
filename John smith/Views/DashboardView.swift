@@ -51,6 +51,7 @@ extension DashboardView {
                         .bold()
                         .padding()
                     NavigationLink(destination: ProfileView()
+                        .navigationTitle("My Profile")
                         .navigationBarTitleDisplayMode(.inline)
                     ) {
                         Image(systemName: "person.crop.circle")

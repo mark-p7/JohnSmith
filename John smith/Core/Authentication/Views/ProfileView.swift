@@ -41,39 +41,46 @@ extension ProfileView {
     
     var profileInterfaceView: some View {
         VStack(alignment: .leading) {
-            Text("Email: \(profileViewModel.getEmail())")
+            Text("Email: \(profileViewModel.getEmail())").padding(.bottom)
             
             Text("Name: \(profileViewModel.getName())")
-            TextField("Your Name: ", text: $editName)
+            TextField("New Name: ", text: $editName) .padding(.top, -10.0)
             
             Text("Gender: \(profileViewModel.getGender())")
-            TextField("Your Gender: ", text: $editGender)
+            TextField("New Gender: ", text: $editGender).padding(.top, -10.0)
             
-            Text("About: \(profileViewModel.getAbout())")
-            TextField("Tell us about yourself: ", text: $editAbout)
+            Text("About: \(profileViewModel.getAbout())").padding(.bottom, -5.0)
+            TextField("Tell us about yourself: ", text: $editAbout).padding(.bottom, 20.0)
             
-            Button("Edit") {
-                showingAlert = true
-            }.alert("Are you sure?", isPresented: $showingAlert, actions: {
-                Button("Ok", role: .destructive, action: {
-                    profileViewModel.editAbout(
-                        changeAbout: editAbout,
-                        changeGender: editGender,
-                        changeName: editName
-                    )
-                    //Clear text fields afterwards
-                    editName = ""
-                    editGender = ""
-                    editAbout = ""
-                    //Reload data on profile page
-                    profileViewModel.getUserData()
-                })
-             }, message: {
-                Text("")
-             })
+            HStack {
+                Spacer()
+                Button("Update") {
+                    showingAlert = true
+                }.alert("Are you sure?", isPresented: $showingAlert, actions: {
+                    Button("Ok", role: .destructive, action: {
+                        profileViewModel.editAbout(
+                            changeAbout: editAbout,
+                            changeGender: editGender,
+                            changeName: editName
+                        )
+                        //Clear text fields afterwards
+                        editName = ""
+                        editGender = ""
+                        editAbout = ""
+                        //Reload data on profile page
+                        profileViewModel.getUserData()
+                    })
+                 }, message: {
+                    Text("")
+             }).buttonStyle(.borderedProminent)
+                    .tint(Color("Secondary"))
+                    .buttonBorderShape(.capsule)
+            Spacer()
+            }
+            .padding(.vertical, 20.0)
             Spacer()
         }
-        .padding(.horizontal, 20.0)
+        .padding(.horizontal, 30.0)
         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
         
     }
