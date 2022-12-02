@@ -64,6 +64,8 @@ extension DashboardView {
                     Text("SignOut")
                 }
             }
+            .padding(.top, -50.0)
+            .background(Color.blue)
         }.navigationBarTitle("")
             .navigationBarHidden(true)
     }
