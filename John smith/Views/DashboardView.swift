@@ -56,6 +56,8 @@ extension DashboardView {
                         Image(systemName: "person.crop.circle")
                             .imageScale(.large)
                     }.padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 30))
+                    NavigationLink("Create Group", destination: CreateGroupView())
+
                 }
             }
             Text("Groups").font(.title).bold()
@@ -64,7 +66,7 @@ extension DashboardView {
             }
             Text("Matched Users").font(.title).bold()
             List(model.matchedUsersList) { user in
-                Text(user.name).font(.title3).bold()
+            NavigationLink("\(user.name)", destination: UserView (userName: user.name, desctiption: user.desctiption, gender: user.gender))            
             }
         }.onAppear {
             profileViewModel.getUserData()
