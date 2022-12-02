@@ -74,18 +74,21 @@ extension RegisterView {
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .padding()
+                    .autocapitalization(.none)
                 TextField("Email", text: $email)
                     .foregroundColor(.black)
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .textInputAutocapitalization(.never)
                     .padding()
+                    .autocapitalization(.none)
                 SecureField("Password", text: $password)
                     .foregroundColor(.black)
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .textInputAutocapitalization(.never)
                     .padding()
+                    .autocapitalization(.none)
             }
             // Register Button
             Button {
