@@ -40,7 +40,6 @@ extension HomeView {
     var homeInterfaceView: some View {
         NavigationView {
             VStack{
-                
                 // App Name
                 Text("John Smith")
                     .font(.system(size: 60))
@@ -73,7 +72,6 @@ extension HomeView {
                     .buttonBorderShape(.capsule)
                     .padding()
                 
-                
                 // Login Button
                 NavigationLink(destination: LoginView(), tag: 2, selection: $navigationAction){}
                     Button {
@@ -87,7 +85,7 @@ extension HomeView {
                     .buttonStyle(.borderedProminent)
                     .tint(Color("Secondary"))
                     .buttonBorderShape(.capsule)
-                
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 50, trailing: 0))
                 
             }
         }

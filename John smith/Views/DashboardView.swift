@@ -44,9 +44,10 @@ extension DashboardView {
                     Image(systemName: "rectangle.portrait.and.arrow.right")
                         .imageScale(.large)
                 }.padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
+                    .foregroundColor(Color("Tenary"))
                 Spacer()
                 HStack {
-                    Text("Hi, \(profileViewModel.getName())!")
+                    Text("Hi, \(profileViewModel.getName())!").foregroundColor(Color("Primary"))
                         .font(.title2)
                         .bold()
                         .padding()
@@ -56,23 +57,29 @@ extension DashboardView {
                         Image(systemName: "person.crop.circle")
                             .imageScale(.large)
                     }.padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 30))
+                        .foregroundColor(Color("Tenary"))
                 }
             }
             HStack {
-                Text("Groups").font(.title).bold()
-                NavigationLink("Create Group", destination: CreateGroupView())
+                Text("Groups").font(.title).bold().foregroundColor(Color("Primary"))
+                NavigationLink(destination: CreateGroupView()
+                    .navigationBarTitleDisplayMode(.inline)
+                ) {
+                    Image(systemName: "plus.square")
+                }.padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                    .foregroundColor(Color("Tenary"))
             }
-//            List(model.groupList) { group in
-//                Text(group.id).font(.title3).bold()
-//            }
             List(model.groupList) { group in
                 NavigationLink("\(group.id)",destination: GroupView (groupName: group.id, currentUser: uid!))
-        //                Text(group.id).font(.title3).bold()
-            }.font(.title3)
-            Text("Matched Users").font(.title).bold()
+                    .foregroundColor(Color("Tenary"))
+            }.font(.title3).background(Color("Secondary"))
+                .scrollContentBackground(.hidden)
+            Text("Matched Users").font(.title).bold().foregroundColor(Color("Primary"))
             List(model.matchedUsersList) { user in
                 Text(user.name).font(.title3).bold()
-            }
+                    .foregroundColor(Color("Tenary"))
+            }.background(Color("Secondary"))
+                .scrollContentBackground(.hidden)
         }.onAppear {
             profileViewModel.getUserData()
         }
