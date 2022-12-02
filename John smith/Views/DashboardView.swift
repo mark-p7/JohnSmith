@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DashboardView: View {
     
     @ObservedObject var model = DashboardViewModel()
     @ObservedObject var profileViewModel = ProfileViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
+    
+    let uid = Auth.auth().currentUser?.uid
     
     var body: some View {
         dashboardInterfaceView
@@ -68,5 +71,6 @@ extension DashboardView {
         }
         
     }
+    
 }
 
