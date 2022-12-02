@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DashboardView: View {
     
     @ObservedObject var model = DashboardViewModel()
     @ObservedObject var profileViewModel = ProfileViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
+    
+    let uid = Auth.auth().currentUser?.uid
     
     var body: some View {
         dashboardInterfaceView
@@ -55,10 +58,17 @@ extension DashboardView {
                     }.padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 30))
                 }
             }
-            Text("Groups").font(.title).bold()
-            List(model.groupList) { group in
-                Text(group.id).font(.title3).bold()
+            HStack {
+                Text("Groups").font(.title).bold()
+                NavigationLink("Create Group", destination: CreateGroupView())
             }
+//            List(model.groupList) { group in
+//                Text(group.id).font(.title3).bold()
+//            }
+            List(model.groupList) { group in
+                NavigationLink("\(group.id)",destination: GroupView (groupName: group.id, currentUser: uid!))
+        //                Text(group.id).font(.title3).bold()
+            }.font(.title3)
             Text("Matched Users").font(.title).bold()
             List(model.matchedUsersList) { user in
                 Text(user.name).font(.title3).bold()

@@ -36,9 +36,12 @@
 		4C070503290B9D42006CF86F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C070502290B9D42006CF86F /* FirebaseFirestoreSwift */; };
 		4C070505290B9D42006CF86F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C070504290B9D42006CF86F /* FirebaseStorage */; };
 		4C070507290B9D42006CF86F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4C070506290B9D42006CF86F /* FirebaseStorageCombine-Community */; };
-		4C768C5C290BA82400C196BD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C768C5B290BA82400C196BD /* GoogleService-Info.plist */; };
 		4C8CB3F4293086E2001C75EF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CB3F3293086E2001C75EF /* ProfileView.swift */; };
 		4C8CB3F629308A6B001C75EF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8CB3F529308A6B001C75EF /* ProfileViewModel.swift */; };
+		DA1054BA2939B486005D1CB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA1054B92939B486005D1CB4 /* GoogleService-Info.plist */; };
+		DA1054BC2939B801005D1CB4 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1054BB2939B801005D1CB4 /* GroupView.swift */; };
+		DA1054BE2939B85C005D1CB4 /* OtherUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1054BD2939B85C005D1CB4 /* OtherUserView.swift */; };
+		DA1054C02939B9C7005D1CB4 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1054BF2939B9C7005D1CB4 /* CreateGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,9 +57,12 @@
 		4A4378BD28F4C90500161FD3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4A775FC628F1375000615D08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A775FC828F1376300615D08 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		4C768C5B290BA82400C196BD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "John smith/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4C8CB3F3293086E2001C75EF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4C8CB3F529308A6B001C75EF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		DA1054B92939B486005D1CB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DA1054BB2939B801005D1CB4 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
+		DA1054BD2939B85C005D1CB4 /* OtherUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserView.swift; sourceTree = "<group>"; };
+		DA1054BF2939B9C7005D1CB4 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +119,7 @@
 				4A775FC528F1373900615D08 /* Models */,
 				4A4378B828F4C84E00161FD3 /* Views */,
 				15CF05CA28DE5E270089B37D /* Assets.xcassets */,
-				4C768C5B290BA82400C196BD /* GoogleService-Info.plist */,
+				DA1054B92939B486005D1CB4 /* GoogleService-Info.plist */,
 				15CF05CC28DE5E270089B37D /* Preview Content */,
 			);
 			path = "John smith";
@@ -131,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				4A32CF6928FA7EA50075B61C /* DashboardView.swift */,
+				DA1054BF2939B9C7005D1CB4 /* CreateGroupView.swift */,
+				DA1054BB2939B801005D1CB4 /* GroupView.swift */,
+				DA1054BD2939B85C005D1CB4 /* OtherUserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,7 +282,7 @@
 			files = (
 				15CF05CE28DE5E270089B37D /* Preview Assets.xcassets in Resources */,
 				15CF05CB28DE5E270089B37D /* Assets.xcassets in Resources */,
-				4C768C5C290BA82400C196BD /* GoogleService-Info.plist in Resources */,
+				DA1054BA2939B486005D1CB4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,8 +293,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1054BE2939B85C005D1CB4 /* OtherUserView.swift in Sources */,
 				4A4378B528F4C83D00161FD3 /* RegisterView.swift in Sources */,
 				4A4378BE28F4C90500161FD3 /* HomeView.swift in Sources */,
+				DA1054BC2939B801005D1CB4 /* GroupView.swift in Sources */,
+				DA1054C02939B9C7005D1CB4 /* CreateGroupView.swift in Sources */,
 				4A4378BA28F4C8D200161FD3 /* AuthViewModel.swift in Sources */,
 				4C8CB3F4293086E2001C75EF /* ProfileView.swift in Sources */,
 				4A32CF6C28FA7EC70075B61C /* DashboardViewModel.swift in Sources */,
@@ -353,7 +365,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"INFOPLIST_FILE[sdk=*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -408,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
