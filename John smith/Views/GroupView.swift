@@ -30,23 +30,37 @@ struct GroupView: View {
     
     var body: some View {
         VStack {
-            Text(groupName)
+            Text(groupName).font(.title).bold()
             Text(userDescription)
             if (hasJoined == false) {
-                Button("Join", action: joinGroup)
+                Button("Join", action: {
+                    joinGroup()
+                    b = false
+                })
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color("Primary"))
+                    .buttonBorderShape(.capsule)
 
             } else {
-                Button("Leave group", action: leaveGroup)
-
+                Button("Leave group", action: {
+                    leaveGroup()
+                    b = true
+                } )
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color.red)
+                    .buttonBorderShape(.capsule)
             }
             
 //            Button("Join", action: joinGroup)
-            if (b == false) {
+            if (hasJoined == true && b == false) {
                 Button("See the joined users", action: {
                     if b == false {
                         b = true
                     }
                 })
+                .buttonStyle(.borderedProminent)
+                    .tint(Color("Tenary"))
+                    .buttonBorderShape(.capsule)
             }
             
 //            Button("See the joined users", action: {
@@ -66,7 +80,7 @@ struct GroupView: View {
 //                    Text("User Name: \(eachUser)")
 //                }
             
-            if (b == true) {
+            if (hasJoined == true && b == true) {
                 List(Array(studentDictionary.keys), id: \.self) {each in
                     NavigationLink(studentDictionary[each]!, destination: OtherUserView(userId: each, user: studentDictionary[each]!) )
                 }

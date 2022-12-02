@@ -20,14 +20,21 @@ struct OtherUserView: View {
     
     var body: some View {
         VStack {
-            Text("Current user ID is: \(userId)")
-            Text("Current user name: \(user)")
-            Text("About \(user): \(about)")
-            Text("\(user)'s Gender: \(gender)")
+//            Text("Current user ID is: \(userId)")
+//            Text("Current user name: \(user)")
+            Text(user).font(.title).bold()
+            Text("About : \(about)").font(.title2)
+            Text("\(user)'s Gender: \(gender)").font(.title2)
             if (like == false) {
                 Button("Like", action: likeUser)
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color("Primary"))
+                    .buttonBorderShape(.capsule)
             } else {
                 Button("Unlike", action: unlikeUser)
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color.red)
+                    .buttonBorderShape(.capsule)
                 
             }
         }.onAppear(perform: readFirestore)
@@ -36,16 +43,60 @@ struct OtherUserView: View {
     
     func likeUser() {
         let db = Firestore.firestore()
+        var temp: Array<String> = []
         db.collection("Users").document(userId).updateData(["pulledLikes" : FieldValue.arrayUnion([uid!])
         ])
+        db.collection("Users").document(uid!).updateData(["pushedLikes" : FieldValue.arrayUnion([userId])
+        ])
         print("your uid is \(uid!)")
+        db.collection("Users").document(userId).getDocument { (document, error) in
+            if error == nil {
+                if document != nil && document!.exists {
+                    guard let documentData = document!.data() else {return}
+                    let pushedLikes = documentData["pushedLikes"] as! [String]
+                    temp = pushedLikes
+                    print("in like user")
+                    print(temp)
+                    if temp.contains(uid!) {
+                        db.collection("Users").document(userId).updateData(["matches" : FieldValue.arrayUnion([uid!])
+                        ])
+                        db.collection("Users").document(uid!).updateData(["matches" : FieldValue.arrayUnion([userId])
+                        ])
+                    }
+
+                }
+            }
+        }
         like = true
     }
     
     func unlikeUser() {
         let db = Firestore.firestore()
+        var temp: Array<String> = []
+
         db.collection("Users").document(userId).updateData(["pulledLikes" : FieldValue.arrayRemove([uid!])
         ])
+        db.collection("Users").document(uid!).updateData(["pushedLikes" : FieldValue.arrayRemove([userId])
+        ])
+        db.collection("Users").document(userId).getDocument { (document, error) in
+            if error == nil {
+                if document != nil && document!.exists {
+                    guard let documentData = document!.data() else {return}
+                    let matches = documentData["matches"] as! [String]
+                    temp = matches
+                    print("in unlike user")
+                    print(temp)
+                    if temp.contains(uid!) {
+                        db.collection("Users").document(userId).updateData(["matches" : FieldValue.arrayRemove([uid!])
+                        ])
+                        db.collection("Users").document(uid!).updateData(["matches" : FieldValue.arrayRemove([userId])
+                        ])
+                    }
+
+                }
+            }
+        }
+        
         like = false
     }
     

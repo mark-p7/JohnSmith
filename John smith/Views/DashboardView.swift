@@ -76,11 +76,13 @@ extension DashboardView {
             }.font(.title3).listRowBackground(Color("Secondary"))
             Text("Matched Users").font(.title).bold().foregroundColor(Color("Primary"))
             List(model.matchedUsersList) { user in
-                Text(user.name).font(.title3).bold()
+                NavigationLink("\(user.name)",destination: UserContactView (userId: user.id))
+                    .font(.title3)
                     .foregroundColor(Color("Tenary"))
             }.listRowBackground(Color("Secondary"))
         }.onAppear {
             profileViewModel.getUserData()
+            model.getMatchedUsersList()
         }
         
     }
