@@ -39,10 +39,12 @@ extension LoginView {
                 .foregroundColor(.black)
                 .font(.title2)
                 .multilineTextAlignment(.center)
+                .autocapitalization(.none)
             SecureField("Password", text: $password)
                 .foregroundColor(.black)
                 .font(.title2)
                 .multilineTextAlignment(.center)
+                .autocapitalization(.none)
             Button("Login", action: {
                 // Checks if email is valid
                 if (self.email == "") {
