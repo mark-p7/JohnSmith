@@ -73,6 +73,8 @@ extension DashboardView {
             List(model.matchedUsersList) { user in
                 Text(user.name).font(.title3).bold()
             }
+        }.onAppear {
+            profileViewModel.getUserData()
         }
         
     }
