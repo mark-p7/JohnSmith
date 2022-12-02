@@ -73,14 +73,12 @@ extension DashboardView {
             List(model.groupList) { group in
                 NavigationLink("\(group.id)",destination: GroupView (groupName: group.id, currentUser: uid!))
                     .foregroundColor(Color("Tenary"))
-            }.font(.title3).background(Color("Secondary"))
-                .scrollContentBackground(.hidden)
+            }.font(.title3).listRowBackground(Color("Secondary"))
             Text("Matched Users").font(.title).bold().foregroundColor(Color("Primary"))
             List(model.matchedUsersList) { user in
                 Text(user.name).font(.title3).bold()
                     .foregroundColor(Color("Tenary"))
-            }.background(Color("Secondary"))
-                .scrollContentBackground(.hidden)
+            }.listRowBackground(Color("Secondary"))
         }.onAppear {
             profileViewModel.getUserData()
         }
