@@ -17,17 +17,23 @@ class ProfileViewModel: ObservableObject {
     @Published var userAbout = ""
     
     //pulls user id from signed in user to query documents, does not check if user is logged in because user must be logged in
-    func getUserID() -> String {
-        let userID : String = (Auth.auth().currentUser?.uid)!
-        print("Current user ID is" + userID)
-        
-        return userID
+    func getUserID() -> String? {
+        let userID : String? = (Auth.auth().currentUser?.uid)
+        if userID != nil {
+            print("Current user ID is" + userID!)
+            return userID
+        }
+        return ""
     }
     
     //Pulls firestore db document as dictionary and dumps data into local variables
     func getUserData() -> Void {
         let db = Firestore.firestore()
-        let docRef = db.collection("Users").document(getUserID())
+        var docID = getUserID()
+        if (docID == "") {
+            return;
+        }
+        let docRef = db.collection("Users").document(docID!)
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -85,7 +91,12 @@ class ProfileViewModel: ObservableObject {
         }
         
         let db = Firestore.firestore()
-        db.collection("Users").document(getUserID()).updateData([
+        var docID = getUserID()
+        if (docID == "") {
+            print("Error updating document")
+            return;
+        }
+        db.collection("Users").document(docID!).updateData([
             "about" : about,
             "gender" : gender,
             "name" : name
