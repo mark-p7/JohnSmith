@@ -83,6 +83,7 @@ extension DashboardView {
         }.onAppear {
             profileViewModel.getUserData()
             model.getMatchedUsersList()
+            model.getGroupsData()
         }
         
     }

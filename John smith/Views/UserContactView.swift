@@ -20,10 +20,32 @@ struct UserContactView: View {
     
     var body: some View {
         VStack {
+            Text("PROFILE")
+                .font(.system(size: 60))
+                .bold()
+                .foregroundColor(Color("Primary"))
+                .padding(EdgeInsets(
+                    top: 0,
+                    leading: 0,
+                    bottom: 15,
+                    trailing: 0))
+                .shadow(color: Color("Secondary"), radius: 5)
             Text("Name: \(name)")
+                .font(.title3)
+                .foregroundColor(Color("Tenary"))
+                .padding(.vertical, 15)
             Text("Gender: \(gender)")
+                .font(.title2)
+                .foregroundColor(Color("Tenary"))
+                .padding(.vertical, 15)
             Text("About: \(about)")
+                .font(.title2)
+                .foregroundColor(Color("Tenary"))
+                .padding(.vertical, 15)
             Text("Email: \(email)")
+                .font(.title2)
+                .foregroundColor(Color("Tenary"))
+                .padding(.vertical, 15)
         }
         .onAppear{readFirestore()}
         

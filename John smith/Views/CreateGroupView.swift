@@ -10,18 +10,39 @@ import Firebase
 
 struct CreateGroupView: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var groupName = ""
     @State private var description = ""
     let uid = Auth.auth().currentUser?.uid
     
     var body: some View {
         VStack {
-            TextField("Group Name", text: $groupName)
-            TextField("Description", text: $description)
-            Button("Create", action: {
+            Text("CREATE GROUP")
+                .font(.system(size: 40))
+                .bold()
+                .foregroundColor(Color("Primary"))
+                .padding(EdgeInsets(
+                    top: 0,
+                    leading: 0,
+                    bottom: 15,
+                    trailing: 0))
+                .shadow(color: Color("Secondary"), radius: 5)
+            TextField("Group Name", text: $groupName).padding(.vertical, 15)
+            TextField("Description", text: $description).padding(.vertical, 15)
+            Button {
                 addGroup()
                 joinGroup()
-            })
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Create")
+                    .padding()
+                    .frame(width: 150,height: 35)
+                    .foregroundColor(Color("Tenary"))
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Color("Secondary"))
+            .buttonBorderShape(.capsule)
+            .padding(.vertical, 15)
         }.multilineTextAlignment(.center)
     }
     func addGroup() {
